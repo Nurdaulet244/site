@@ -1,0 +1,1151 @@
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:"Arial", sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#faf8f5;
+    color:#222;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+img{
+    max-width:100%;
+}
+
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    height:80px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 7%;
+
+    background:#111;
+
+    color:white;
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+
+}
+
+
+.logo{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    letter-spacing:4px;
+
+}
+
+
+.logo span{
+
+    color:#d4af37;
+
+}
+
+
+
+nav{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+
+
+nav a{
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+
+
+nav a:hover{
+
+    color:#d4af37;
+
+}
+
+
+
+/* =========================
+   HERO
+========================= */
+
+
+.hero{
+
+    height:650px;
+
+    background:
+
+    linear-gradient(
+    rgba(0,0,0,.6),
+    rgba(0,0,0,.6)
+    ),
+
+    url("images/banner.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    color:white;
+
+}
+
+
+
+.hero h1{
+
+    font-size:65px;
+
+    letter-spacing:8px;
+
+}
+
+
+
+.hero h2{
+
+    color:#d4af37;
+
+    font-size:35px;
+
+    margin:20px 0;
+
+}
+
+
+
+.hero p{
+
+    font-size:20px;
+
+    line-height:1.6;
+
+}
+
+
+
+
+/* =========================
+ BUTTONS
+========================= */
+
+
+.btn{
+
+    display:inline-block;
+
+    padding:15px 35px;
+
+    border-radius:40px;
+
+    margin:10px;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+
+.gold{
+
+    background:#d4af37;
+
+    color:#111;
+
+}
+
+
+.gold:hover{
+
+    background:#b89220;
+
+}
+
+
+
+.dark{
+
+    background:#111;
+
+    color:white;
+
+}
+
+
+
+
+/* =========================
+ SECTIONS
+========================= */
+
+
+.catalog,
+.advantages,
+.contacts,
+.business,
+.cart-page{
+
+    padding:80px 7%;
+
+}
+
+
+
+.catalog h2,
+.advantages h2,
+.contacts h2,
+.business h2{
+
+    text-align:center;
+
+    font-size:38px;
+
+    margin-bottom:50px;
+
+}
+
+
+
+
+
+/* =========================
+ PRODUCT GRID
+========================= */
+
+
+.catalog-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:30px;
+
+}
+
+
+
+/* PRODUCT */
+
+
+.product-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    transition:.4s;
+
+}
+
+
+
+.product-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:
+    0 20px 45px rgba(0,0,0,.15);
+
+}
+
+
+
+.product-card img{
+
+    width:100%;
+
+    height:300px;
+
+    object-fit:contain;
+
+    border-radius:20px;
+
+    transition:.4s;
+
+}
+
+
+
+.product-card:hover img{
+
+    transform:scale(1.05);
+
+}
+
+
+
+.product-card h3{
+
+    margin:20px 0 10px;
+
+}
+
+
+
+.product-card p{
+
+    line-height:1.5;
+
+    color:#666;
+
+}
+
+
+
+.brand{
+
+    color:#b08b20;
+
+    font-weight:bold;
+
+}
+
+
+
+.price{
+
+    font-size:24px;
+
+    color:#b08b20;
+
+    font-weight:bold;
+
+}
+
+
+
+/* =========================
+ ADVANTAGES
+========================= */
+
+
+.adv-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:30px;
+
+}
+
+
+
+.adv-grid div{
+
+    background:white;
+
+    padding:35px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.07);
+
+    transition:.3s;
+
+}
+
+
+
+.adv-grid div:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+
+/* =========================
+ CONTACTS
+========================= */
+
+
+.contact-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:30px;
+
+}
+
+
+
+.contact-card{
+
+    background:white;
+
+    padding:40px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+
+
+.contact-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+
+
+.contact-card i{
+
+    color:#d4af37;
+
+}
+
+
+
+.contact-card p{
+
+    margin:15px;
+
+}
+
+
+
+/* =========================
+ CART
+========================= */
+
+
+.cart-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:30px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.cart-item img{
+
+    width:130px;
+
+    height:130px;
+
+    object-fit:contain;
+
+}
+
+
+
+.cart-summary{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    margin-top:30px;
+
+}
+
+
+
+/* =========================
+ FORM
+========================= */
+
+
+.business input,
+.business select,
+.business textarea{
+
+
+    display:block;
+
+    width:100%;
+
+    max-width:550px;
+
+    margin:15px auto;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    border:1px solid #ddd;
+
+    font-size:16px;
+
+}
+
+
+
+.business textarea{
+
+    resize:none;
+
+}
+
+
+
+/* =========================
+ FLOAT BUTTONS
+========================= */
+
+
+.floating-buttons{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    z-index:999;
+
+}
+
+
+
+.whatsapp-float,
+.instagram-float{
+
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:30px;
+
+    transition:.3s;
+
+}
+
+
+
+.whatsapp-float{
+
+    background:#25D366;
+
+}
+
+
+
+.instagram-float{
+
+    background:#e1306c;
+
+}
+
+
+
+.whatsapp-float:hover,
+.instagram-float:hover{
+
+    transform:scale(1.15);
+
+}
+
+
+
+/* =========================
+ FOOTER
+========================= */
+
+
+footer{
+
+    background:#111;
+
+    color:white;
+
+    padding:40px;
+
+    text-align:center;
+
+    line-height:2;
+
+}
+
+
+
+
+/* =========================
+ MOBILE
+========================= */
+
+
+@media(max-width:1000px){
+
+
+.catalog-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+
+.adv-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+
+.hero h1{
+
+    font-size:45px;
+
+}
+
+
+}
+
+
+
+
+@media(max-width:600px){
+
+
+.header{
+
+    flex-direction:column;
+
+    height:auto;
+
+    gap:20px;
+
+    padding:20px;
+
+}
+
+
+
+nav{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:15px;
+
+}
+
+
+
+.hero{
+
+    height:550px;
+
+}
+
+
+
+.hero h1{
+
+    font-size:34px;
+
+}
+
+
+
+.hero h2{
+
+    font-size:24px;
+
+}
+
+
+
+.catalog-grid,
+.adv-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+.cart-item{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+
+}
+/* =========================
+   CATALOG PAGE
+========================= */
+
+
+.catalog-page{
+
+    padding:80px 7%;
+
+    text-align:center;
+
+}
+
+
+
+.catalog-page h1{
+
+    font-size:45px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.catalog-page > p{
+
+    color:#666;
+
+    font-size:18px;
+
+    margin-bottom:40px;
+
+}
+
+
+
+/* SEARCH + FILTER */
+
+
+.catalog-tools{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:50px;
+
+}
+
+
+
+.search-box,
+.catalog-tools select{
+
+
+    width:320px;
+
+    padding:15px 20px;
+
+    border-radius:30px;
+
+    border:1px solid #ddd;
+
+    background:white;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+
+
+.search-box:focus,
+.catalog-tools select:focus{
+
+    border-color:#d4af37;
+
+}
+
+
+
+
+/* SELECT VOLUME */
+
+
+.volume{
+
+    width:90%;
+
+    padding:12px;
+
+    margin:15px 0;
+
+    border-radius:12px;
+
+    border:1px solid #ddd;
+
+    background:#faf8f5;
+
+}
+
+
+
+
+
+/* CART BUTTON */
+
+
+.product-card button{
+
+    margin-top:10px;
+
+}
+
+
+
+
+/* CART EMPTY */
+
+
+#cartItems h3{
+
+    text-align:center;
+
+    font-size:25px;
+
+    padding:40px;
+
+}
+
+
+
+
+/* TOTAL */
+
+
+#total{
+
+    text-align:center;
+
+    color:#b08b20;
+
+    margin:30px;
+
+}
+
+
+
+
+
+
+/* =========================
+ WHOLESALE PACKAGES
+========================= */
+
+
+.catalog .product-card h3{
+
+    color:#b08b20;
+
+}
+
+
+
+
+
+
+/* =========================
+ CONTACT LINKS
+========================= */
+
+
+.contact-card a{
+
+    color:#b08b20;
+
+    font-weight:bold;
+
+}
+
+
+
+.contact-card a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+
+
+
+
+/* =========================
+ MOBILE CATALOG
+========================= */
+
+
+@media(max-width:600px){
+
+
+.catalog-page h1{
+
+    font-size:32px;
+
+}
+
+
+
+.catalog-tools{
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+
+
+.search-box,
+.catalog-tools select{
+
+    width:100%;
+
+}
+
+
+
+.product-card img{
+
+    height:250px;
+
+}
+
+
+}
+/* =========================
+   FLEUR PERFUMES FIXES
+========================= */
+
+
+/* CATALOG HEADER */
+
+.catalog-header{
+
+    padding:80px 7%;
+
+    text-align:center;
+
+    background:#111;
+
+    color:white;
+
+}
+
+
+.catalog-header h1{
+
+    font-size:50px;
+
+    letter-spacing:5px;
+
+    margin-bottom:20px;
+
+}
+
+
+.catalog-header h2{
+
+    color:#d4af37;
+
+    font-size:32px;
+
+    margin-bottom:20px;
+
+}
+
+
+.catalog-header p{
+
+    font-size:20px;
+
+    line-height:1.7;
+
+}
+
+
+
+/* PRODUCT DESCRIPTION */
+
+.description{
+
+    min-height:70px;
+
+    margin:15px 0;
+
+}
+
+
+
+/* CART TITLE */
+
+.cart-page h1{
+
+    text-align:center;
+
+    font-size:40px;
+
+    margin-bottom:40px;
+
+}
+
+
+
+/* PRODUCT BUTTON */
+
+.product-card .btn{
+
+    margin-top:20px;
+
+}
+
+
+
+/* PRODUCT IMAGE MOBILE */
+
+@media(max-width:600px){
+
+
+    .catalog-header h1{
+
+        font-size:32px;
+
+    }
+
+
+    .catalog-header h2{
+
+        font-size:24px;
+
+    }
+
+
+    .catalog-header p{
+
+        font-size:16px;
+
+    }
+
+
+    .cart-page h1{
+
+        font-size:30px;
+
+    }
+
+
+}
