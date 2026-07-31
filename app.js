@@ -1,11 +1,11 @@
 /* =========================
-   FLEUR PERFUMES APP.JS
+   FLEUR PERFUMES
+   APP.JS
 ========================= */
 
 
-
 /* =========================
-   DISPLAY PRODUCTS
+   SHOW PRODUCTS
 ========================= */
 
 
@@ -24,7 +24,8 @@ container.innerHTML = "";
 
 
 
-list.forEach(product=>{
+list.forEach(product => {
+
 
 
 container.innerHTML += `
@@ -42,8 +43,9 @@ alt="${product.name}"
 
 loading="lazy"
 
->
+onerror="this.src='images/no-image.png'"
 
+>
 
 
 
@@ -55,15 +57,11 @@ ${product.name}
 
 
 
-
-
 <p class="brand">
 
 ${product.brand}
 
 </p>
-
-
 
 
 
@@ -76,26 +74,11 @@ ${product.category}
 
 
 
-
-
 <p class="description">
 
-${product.description}
+${product.description || ""}
 
 </p>
-
-
-
-
-
-<p class="recommendation">
-
-${product.recommendation}
-
-</p>
-
-
-
 
 
 
@@ -114,10 +97,7 @@ onclick="addToCart('${product.id}')"
 
 
 
-
-
 </div>
-
 
 
 `;
@@ -133,59 +113,43 @@ onclick="addToCart('${product.id}')"
 
 
 
-
-
-
-
 /* =========================
-   CREATE FILTERS
+   FILTERS
 ========================= */
 
 
 function createFilters(){
 
 
-const brandFilter =
+
+const brand =
 document.getElementById("brandFilter");
 
 
-
-const categoryFilter =
+const category =
 document.getElementById("categoryFilter");
 
 
 
-if(!brandFilter || !categoryFilter)
-return;
+if(!brand || !category) return;
 
 
 
-
-
-brandFilter.innerHTML = `
-
+brand.innerHTML =
+`
 <option value="all">
-
 Все бренды
-
 </option>
-
 `;
 
 
 
-
-categoryFilter.innerHTML = `
-
+category.innerHTML =
+`
 <option value="all">
-
 Все категории
-
 </option>
-
 `;
-
-
 
 
 
@@ -206,7 +170,6 @@ item=>item.brand
 
 
 
-
 let categories = [
 
 ...new Set(
@@ -223,20 +186,16 @@ item=>item.category
 
 
 
+brands.forEach(item=>{
 
-brands.forEach(brand=>{
 
+brand.innerHTML +=
 
-brandFilter.innerHTML += `
-
-<option value="${brand}">
-
-${brand}
-
+`
+<option value="${item}">
+${item}
 </option>
-
 `;
-
 
 
 });
@@ -245,58 +204,38 @@ ${brand}
 
 
 
+categories.forEach(item=>{
 
 
-categories.forEach(category=>{
+category.innerHTML +=
 
-
-categoryFilter.innerHTML += `
-
-<option value="${category}">
-
-${category}
-
+`
+<option value="${item}">
+${item}
 </option>
-
 `;
 
 
-
 });
-
 
 
 }
-
-
-
-
-
-
-
-
-
 /* =========================
-   CATALOG FILTER
+   CATALOG SEARCH
 ========================= */
 
 
 function initCatalog(){
 
 
-
-if(typeof products==="undefined")
+if(typeof products === "undefined")
 return;
-
 
 
 
 displayProducts();
 
-
-
 createFilters();
-
 
 
 
@@ -307,15 +246,13 @@ document.getElementById("search");
 
 
 
-const brandFilter =
+const brand =
 document.getElementById("brandFilter");
 
 
 
-const categoryFilter =
+const category =
 document.getElementById("categoryFilter");
-
-
 
 
 
@@ -329,11 +266,7 @@ let result = products;
 
 
 
-
-
-
 if(search){
-
 
 
 let text =
@@ -344,54 +277,38 @@ search.value
 
 
 
-
 if(text){
 
 
 result =
-result.filter(product=>
+result.filter(product =>
+
 
 product.name
 .toLowerCase()
 .includes(text)
 
 
+
 ||
+
+
 
 product.brand
 .toLowerCase()
 .includes(text)
 
-);
+
+
+||
 
 
 
-}
+product.category
+.toLowerCase()
+.includes(text)
 
 
-
-}
-
-
-
-
-
-
-
-
-
-if(
-brandFilter &&
-brandFilter.value!=="all"
-
-){
-
-
-result =
-result.filter(product=>
-
-product.brand ===
-brandFilter.value
 
 );
 
@@ -400,24 +317,38 @@ brandFilter.value
 
 
 
+}
 
 
 
 
 
 
-if(
-categoryFilter &&
-categoryFilter.value!=="all"
-
-){
+if(brand && brand.value !== "all"){
 
 
 result =
-result.filter(product=>
+result.filter(product =>
 
-product.category ===
-categoryFilter.value
+product.brand === brand.value
+
+);
+
+
+}
+
+
+
+
+
+
+if(category && category.value !== "all"){
+
+
+result =
+result.filter(product =>
+
+product.category === category.value
 
 );
 
@@ -439,7 +370,6 @@ displayProducts(result);
 
 
 
-
 if(search){
 
 search.addEventListener(
@@ -453,9 +383,9 @@ filterProducts
 
 
 
-if(brandFilter){
+if(brand){
 
-brandFilter.addEventListener(
+brand.addEventListener(
 "change",
 filterProducts
 );
@@ -466,9 +396,9 @@ filterProducts
 
 
 
-if(categoryFilter){
+if(category){
 
-categoryFilter.addEventListener(
+category.addEventListener(
 "change",
 filterProducts
 );
@@ -478,9 +408,6 @@ filterProducts
 
 
 }
-
-
-
 
 
 
@@ -492,7 +419,6 @@ filterProducts
 ========================= */
 
 
-
 function getCart(){
 
 
@@ -500,12 +426,11 @@ return JSON.parse(
 
 localStorage.getItem("cart")
 
-) || [];
+)
 
+|| [];
 
 }
-
-
 
 
 
@@ -530,11 +455,8 @@ JSON.stringify(cart)
 
 
 
-
-
-
 /* =========================
-   ADD CART
+   ADD TO CART
 ========================= */
 
 
@@ -548,9 +470,8 @@ getCart();
 
 
 
-
 let product =
-products.find(item=>
+products.find(item =>
 
 item.id === id
 
@@ -567,9 +488,8 @@ return;
 
 
 
-
-let exists =
-cart.find(item=>
+let item =
+cart.find(item =>
 
 item.id === id
 
@@ -579,11 +499,10 @@ item.id === id
 
 
 
+if(item){
 
-if(exists){
 
-
-exists.quantity++;
+item.quantity++;
 
 
 }
@@ -609,7 +528,6 @@ quantity:1
 saveCart(cart);
 
 
-
 updateCartCount();
 
 
@@ -633,8 +551,6 @@ product.name +
 
 
 
-
-
 /* =========================
    CART COUNT
 ========================= */
@@ -643,14 +559,14 @@ product.name +
 function updateCartCount(){
 
 
-const count =
+
+const counter =
 document.getElementById("cartCount");
 
 
 
-if(!count)
+if(!counter)
 return;
-
 
 
 
@@ -661,14 +577,13 @@ getCart();
 
 
 
-
-let total =
+let count =
 
 cart.reduce(
 
 (sum,item)=>
 
-sum + (item.quantity || 1),
+sum + item.quantity,
 
 0
 
@@ -678,21 +593,12 @@ sum + (item.quantity || 1),
 
 
 
-count.innerHTML =
-total;
+counter.innerHTML =
+count;
 
 
 
 }
-
-
-
-
-
-
-
-
-
 /* =========================
    LOAD CART
 ========================= */
@@ -701,15 +607,12 @@ total;
 function loadCart(){
 
 
-
 const container =
 document.getElementById("cartItems");
 
 
-
 const total =
 document.getElementById("total");
-
 
 
 
@@ -719,49 +622,40 @@ return;
 
 
 
-
-
 let cart =
 getCart();
 
 
 
-
-
-container.innerHTML="";
-
+container.innerHTML = "";
 
 
 
 
 
+if(cart.length === 0){
 
-if(cart.length===0){
 
+container.innerHTML =
 
-container.innerHTML = `
-
+`
 <h3>
-
 Корзина пустая
-
 </h3>
-
 `;
 
 
 
 if(total)
 
-total.innerHTML="";
+total.innerHTML = "";
+
 
 
 return;
 
 
 }
-
-
 
 
 
@@ -772,23 +666,25 @@ let sum = 0;
 
 
 
-
-
-
 cart.forEach((item,index)=>{
 
 
 
-container.innerHTML += `
+container.innerHTML +=
+
+`
 
 
 <div class="cart-item">
 
 
-
 <img
 
 src="${item.image}"
+
+alt="${item.name}"
+
+onerror="this.src='images/no-image.png'"
 
 >
 
@@ -797,30 +693,21 @@ src="${item.image}"
 <div>
 
 
-
 <h3>
-
 ${item.name}
-
 </h3>
 
 
 
 <p>
-
 ${item.brand}
-
 </p>
 
 
 
 <p>
-
-Количество:
-${item.quantity}
-
+Количество: ${item.quantity}
 </p>
-
 
 
 
@@ -835,7 +722,6 @@ onclick="removeCart(${index})"
 Удалить
 
 </button>
-
 
 
 </div>
@@ -859,7 +745,6 @@ sum += item.quantity;
 
 
 
-
 if(total){
 
 
@@ -868,14 +753,11 @@ total.innerHTML =
 "Всего товаров: " + sum;
 
 
-}
-
-
 
 }
 
 
-
+}
 
 
 
@@ -883,7 +765,7 @@ total.innerHTML =
 
 
 /* =========================
-   REMOVE CART
+   REMOVE ITEM
 ========================= */
 
 
@@ -909,11 +791,7 @@ loadCart();
 updateCartCount();
 
 
-
 }
-
-
-
 
 
 
@@ -931,15 +809,14 @@ function clearCart(){
 localStorage.removeItem("cart");
 
 
+
 loadCart();
 
 
 updateCartCount();
 
 
-
 }
-
 
 
 
@@ -964,7 +841,7 @@ getCart();
 
 
 
-if(cart.length===0){
+if(cart.length === 0){
 
 
 alert(
@@ -981,8 +858,6 @@ return;
 
 
 
-
-
 let message =
 
 "Здравствуйте, FLEUR PERFUMES!%0A%0A";
@@ -990,8 +865,7 @@ let message =
 
 message +=
 
-"Хочу заказать:%0A";
-
+"Хочу заказать:%0A%0A";
 
 
 
@@ -1003,39 +877,21 @@ cart.forEach(item=>{
 
 message +=
 
-"- "
 
-+
+"- " +
 
-item.name
+item.name +
 
-+
+" (" +
 
-" "
+item.brand +
 
-+
+") x " +
 
-"("
-
-+
-
-item.brand
-
-+
-
-")"
-
-+
-
-" x "
-
-+
-
-item.quantity
-
-+
+item.quantity +
 
 "%0A";
+
 
 
 });
@@ -1043,6 +899,22 @@ item.quantity
 
 
 
+
+let city = confirm(
+
+"Выберите город заказа:%0A%0A" +
+
+"OK — Алматы%0A" +
+
+"Отмена — Астана"
+
+);
+
+
+
+
+
+if(city){
 
 
 
@@ -1057,8 +929,30 @@ message
 );
 
 
+
 }
 
+else{
+
+
+
+window.open(
+
+"https://wa.me/77714013715?text="
+
++
+
+message
+
+);
+
+
+
+}
+
+
+
+}
 
 
 
@@ -1076,98 +970,71 @@ function sendWholesale(){
 
 
 
-let text =
+let message =
 
-"Здравствуйте, FLEUR PERFUMES!%0A%0A"
 
-+
+"Здравствуйте, FLEUR PERFUMES!%0A%0A" +
 
-"Имя: "
 
-+
+"Имя: " +
 
 (document.getElementById("name")?.value || "")
 
 +
 
-"%0A"
-
-+
-
-"Компания: "
-
-+
+"%0AКомпания: " +
 
 (document.getElementById("company")?.value || "")
 
 +
 
-"%0A"
-
-+
-
-"Телефон: "
-
-+
+"%0AТелефон: " +
 
 (document.getElementById("phone")?.value || "")
 
 +
 
-"%0A"
+"%0AГород: " +
 
-+
-
-"Город: "
-
-+
-
-(document.getElementById("city")?.value || "")
-
-+
-
-"%0A"
-
-+
-
-"Аромат: "
-
-+
-
-(document.getElementById("aroma")?.value || "")
-
-+
-
-"%0A"
-
-+
-
-"Объем: "
-
-+
-
-(document.getElementById("volume")?.value || "");
+(document.getElementById("city")?.value || "");
 
 
 
+let city = confirm(
 
-
-
-window.open(
-
-"https://wa.me/77781655756?text="
-
-+
-
-text
+"Выберите город:%0A%0AOK — Алматы%0AОтмена — Астана"
 
 );
 
 
 
+if(city){
+
+
+window.open(
+
+"https://wa.me/77781655756?text="+message
+
+);
+
+
+}
+
+else{
+
+
+window.open(
+
+"https://wa.me/77714013715?text="+message
+
+);
+
+
 }
 
 
+
+}
 
 
 
