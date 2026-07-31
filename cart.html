@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-
 <head>
 
 <meta charset="UTF-8">
@@ -35,7 +34,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 
 
+
+
 <!-- HEADER -->
+
 
 <header class="header">
 
@@ -49,11 +51,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 <a href="index.html" class="logo">
 
 FLEUR
+
 <span>
 PERFUMES
 </span>
 
 </a>
+
 
 
 
@@ -66,9 +70,11 @@ PERFUMES
 </a>
 
 
+
 <a href="catalog.html">
 Каталог
 </a>
+
 
 
 <a href="wholesale.html">
@@ -76,22 +82,29 @@ PERFUMES
 </a>
 
 
+
 <a href="cart.html">
+
 
 <i class="fa-solid fa-cart-shopping"></i>
 
+
 Корзина
+
 
 <span id="cartCount">
 0
 </span>
 
+
 </a>
+
 
 
 <a href="contacts.html">
 Контакты
 </a>
+
 
 
 </div>
@@ -112,6 +125,8 @@ PERFUMES
 
 
 
+
+
 <!-- CART -->
 
 
@@ -121,17 +136,28 @@ PERFUMES
 <div class="container">
 
 
+
 <h1>
 🛒 Ваша корзина
 </h1>
 
 
 
-<div 
+
+
+<div
+
 id="cartItems"
-class="cart-items">
+
+class="cart-items"
+
+>
+
 
 </div>
+
+
+
 
 
 
@@ -144,7 +170,12 @@ class="cart-items">
 
 
 
+
+
 <div class="cart-buttons">
+
+
+
 
 
 <button
@@ -155,11 +186,17 @@ onclick="checkout()"
 
 >
 
+
 <i class="fa-brands fa-whatsapp"></i>
 
-Оформить заказ
+
+Заказать в WhatsApp
+
 
 </button>
+
+
+
 
 
 
@@ -173,9 +210,13 @@ onclick="clearCart()"
 
 >
 
+
 Очистить корзину
 
+
 </button>
+
+
 
 
 
@@ -189,13 +230,95 @@ class="btn"
 
 >
 
+
 Продолжить покупки
+
 
 </a>
 
 
 
+
+
+
 </div>
+
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- CONTACT INFO -->
+
+
+<section class="contact-box">
+
+
+<div class="container">
+
+
+<h2>
+Наши WhatsApp
+</h2>
+
+
+
+
+<p>
+
+<i class="fa-brands fa-whatsapp"></i>
+
+Алматы:
+
+<a
+
+href="https://wa.me/77781655756"
+
+target="_blank"
+
+>
+
+87781655756
+
+</a>
+
+</p>
+
+
+
+
+
+<p>
+
+<i class="fa-brands fa-whatsapp"></i>
+
+Астана:
+
+<a
+
+href="https://wa.me/77714013715"
+
+target="_blank"
+
+>
+
+87714013715
+
+</a>
+
+</p>
 
 
 
@@ -218,6 +341,7 @@ class="btn"
 <div class="floating-buttons">
 
 
+
 <a
 
 href="https://wa.me/77781655756"
@@ -226,11 +350,42 @@ target="_blank"
 
 class="whatsapp-float"
 
+title="WhatsApp Алматы"
+
 >
 
 <i class="fa-brands fa-whatsapp"></i>
 
+<span>
+Алматы
+</span>
+
 </a>
+
+
+
+
+
+<a
+
+href="https://wa.me/77714013715"
+
+target="_blank"
+
+class="whatsapp-float"
+
+title="WhatsApp Астана"
+
+>
+
+<i class="fa-brands fa-whatsapp"></i>
+
+<span>
+Астана
+</span>
+
+</a>
+
 
 
 
@@ -243,9 +398,39 @@ target="_blank"
 
 class="instagram-float"
 
+title="Instagram Алматы"
+
 >
 
 <i class="fa-brands fa-instagram"></i>
+
+<span>
+Алматы
+</span>
+
+</a>
+
+
+
+
+
+<a
+
+href="https://instagram.com/fleur.perfumes.astana"
+
+target="_blank"
+
+class="instagram-float"
+
+title="Instagram Астана"
+
+>
+
+<i class="fa-brands fa-instagram"></i>
+
+<span>
+Астана
+</span>
 
 </a>
 
@@ -297,16 +482,34 @@ class="instagram-float"
 
 
 
+
 <!-- SCRIPTS -->
 
 
-<script src="products.js"></script>
+<script src="js/products.js"></script>
 
-<script src="app.js"></script>
+<script src="js/app.js"></script>
+
+
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+loadCart();
+
+updateCartCount();
+
+}
+
+);
+
+</script>
 
 
 
 </body>
-
 
 </html>
