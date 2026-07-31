@@ -1,51 +1,35 @@
 /* =========================
-   FLEUR PERFUMES STYLE
+   FLEUR PERFUMES
+   STYLE CSS
 ========================= */
 
 
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+
+box-sizing:border-box;
+
+margin:0;
+
+padding:0;
+
+font-family:
+"Segoe UI",
+Arial,
+sans-serif;
+
 }
+
 
 
 
 body{
 
-    font-family:
-    "Segoe UI",
-    Arial,
-    sans-serif;
+background:#faf8f5;
 
-    background:#0d0d0d;
+color:#222;
 
-    color:#ffffff;
-
-    line-height:1.6;
-
-}
-
-
-
-
-
-a{
-
-    text-decoration:none;
-
-    color:inherit;
-
-}
-
-
-
-
-img{
-
-    max-width:100%;
-
-    display:block;
+line-height:1.6;
 
 }
 
@@ -55,17 +39,13 @@ img{
 
 .container{
 
-    width:90%;
+width:90%;
 
-    max-width:1200px;
+max-width:1200px;
 
-    margin:auto;
+margin:auto;
 
 }
-
-
-
-
 
 
 
@@ -78,33 +58,28 @@ img{
 
 .header{
 
-    background:#050505;
+background:#111;
 
-    border-bottom:
-    1px solid
-    #c9a227;
+padding:20px 0;
 
-    position:sticky;
+position:sticky;
 
-    top:0;
+top:0;
 
-    z-index:1000;
+z-index:1000;
 
 }
 
 
 
 
+nav{
 
-.header nav{
+display:flex;
 
-    display:flex;
+justify-content:space-between;
 
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:20px 0;
+align-items:center;
 
 }
 
@@ -114,23 +89,29 @@ img{
 
 .logo{
 
-    font-size:26px;
+color:#d4af37;
 
-    font-weight:700;
+font-size:28px;
 
-    letter-spacing:3px;
+font-weight:700;
 
-    color:#d4af37;
+text-decoration:none;
+
+letter-spacing:2px;
 
 }
 
 
 
-
-
 .logo span{
 
-    color:#ffffff;
+display:block;
+
+font-size:14px;
+
+color:white;
+
+letter-spacing:4px;
 
 }
 
@@ -140,9 +121,9 @@ img{
 
 .nav-links{
 
-    display:flex;
+display:flex;
 
-    gap:25px;
+gap:25px;
 
 }
 
@@ -152,22 +133,41 @@ img{
 
 .nav-links a{
 
-    transition:.3s;
+color:white;
+
+text-decoration:none;
+
+font-size:16px;
+
+transition:.3s;
 
 }
-
-
 
 
 
 .nav-links a:hover{
 
-    color:#d4af37;
+color:#d4af37;
 
 }
 
 
 
+
+
+#cartCount{
+
+background:#d4af37;
+
+color:#111;
+
+border-radius:50%;
+
+padding:2px 8px;
+
+font-weight:bold;
+
+}
 
 
 
@@ -181,42 +181,46 @@ img{
 
 .hero{
 
-    padding:90px 0;
+padding:80px 0;
 
-    text-align:center;
+text-align:center;
 
-    background:
+background:
 
-    linear-gradient(
-    rgba(0,0,0,.7),
-    rgba(0,0,0,.9)
-    );
+linear-gradient(
+rgba(0,0,0,.6),
+rgba(0,0,0,.6)
+),
+
+url("../images/bg.jpg");
+
+background-size:cover;
+
+color:white;
 
 }
+
+
 
 
 
 .hero h1{
 
-    font-size:48px;
+font-size:48px;
 
-    color:#d4af37;
+color:#d4af37;
 
 }
+
+
 
 
 
 .hero p{
 
-    font-size:20px;
-
-    margin-top:15px;
+font-size:20px;
 
 }
-
-
-
-
 
 
 
@@ -229,33 +233,21 @@ img{
 
 .btn{
 
-    display:inline-block;
+display:inline-block;
 
-    padding:12px 30px;
+padding:12px 25px;
 
-    border-radius:30px;
+border-radius:30px;
 
-    margin:10px;
+border:none;
 
-    border:none;
+cursor:pointer;
 
-    cursor:pointer;
+text-decoration:none;
 
-    background:#222;
+font-size:16px;
 
-    color:white;
-
-}
-
-
-
-.btn.gold{
-
-    background:#d4af37;
-
-    color:#000;
-
-    font-weight:700;
+margin:5px;
 
 }
 
@@ -263,174 +255,117 @@ img{
 
 
 
-.btn.dark{
+.gold{
 
-    background:#111;
+background:#d4af37;
 
-    border:1px solid #d4af37;
+color:#111;
 
 }
 
 
 
 
+
+.dark{
+
+background:#222;
+
+color:white;
+
+}
+
+
+
+
+.btn:hover{
+
+opacity:.8;
+
+}
+/* =========================
+   CATALOG
+========================= */
+
+
+.catalog-page{
+
+padding:50px 0;
+
+}
+
+
+
+
+.catalog-page h1{
+
+text-align:center;
+
+font-size:40px;
+
+margin-bottom:30px;
+
+color:#b08a20;
+
+}
+
+
+
+
+
+/* SEARCH */
+
+.search-box{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+margin-bottom:30px;
+
+flex-wrap:wrap;
+
+}
+
+
+
+
+
+.search-box input,
+.search-box select{
+
+padding:12px 20px;
+
+border:1px solid #ddd;
+
+border-radius:25px;
+
+font-size:16px;
+
+background:white;
+
+}
 
 
 
 
 
 /* =========================
-   SECTIONS
+   PRODUCTS GRID
 ========================= */
 
 
-section{
+.products-grid{
 
-    padding:60px 0;
+display:grid;
 
-}
+grid-template-columns:
 
+repeat(4,1fr);
 
-
-h2{
-
-    text-align:center;
-
-    color:#d4af37;
-
-    font-size:32px;
-
-    margin-bottom:40px;
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-   ADVANTAGES
-========================= */
-
-
-.advantages-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:25px;
-
-}
-
-
-
-.advantage{
-
-    background:#151515;
-
-    padding:30px;
-
-    text-align:center;
-
-    border-radius:15px;
-
-    border:
-    1px solid
-    #333;
-
-}
-
-
-
-
-
-.advantage h3{
-
-    color:#d4af37;
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-   CATALOG FILTERS
-========================= */
-
-
-.catalog-tools{
-
-    display:flex;
-
-    gap:15px;
-
-    justify-content:center;
-
-    margin-bottom:40px;
-
-}
-
-
-
-
-
-.catalog-tools input,
-
-.catalog-tools select,
-
-.form-box input{
-
-
-    padding:14px;
-
-    background:#111;
-
-    color:white;
-
-    border:
-
-    1px solid
-
-    #555;
-
-
-    border-radius:10px;
-
-}
-
-
-
-
-
-
-
-
-
-/* =========================
-   PRODUCTS
-========================= */
-
-
-#products{
-
-    display:grid;
-
-    grid-template-columns:
-
-    repeat(4,1fr);
-
-    gap:25px;
+gap:25px;
 
 }
 
@@ -440,50 +375,48 @@ h2{
 
 .product-card{
 
+background:white;
 
-    background:#151515;
+border-radius:20px;
 
-    border-radius:20px;
+padding:20px;
 
-    padding:20px;
+text-align:center;
 
-    border:
+box-shadow:
 
-    1px solid
+0 5px 20px
 
-    #333;
+rgba(0,0,0,.08);
 
-    transition:.3s;
-
+transition:.3s;
 
 }
-
 
 
 
 
 .product-card:hover{
 
-
-    transform:translateY(-5px);
-
-    border-color:#d4af37;
-
+transform:translateY(-5px);
 
 }
 
 
 
 
+
 .product-card img{
 
-    height:280px;
+width:100%;
 
-    width:100%;
+height:300px;
 
-    object-fit:cover;
+object-fit:contain;
 
-    border-radius:15px;
+border-radius:15px;
+
+background:#f7f7f7;
 
 }
 
@@ -493,7 +426,9 @@ h2{
 
 .product-card h3{
 
-    margin-top:15px;
+margin-top:15px;
+
+font-size:20px;
 
 }
 
@@ -501,9 +436,11 @@ h2{
 
 
 
-.brand{
+.product-card .brand{
 
-    color:#d4af37;
+color:#b08a20;
+
+font-weight:bold;
 
 }
 
@@ -511,9 +448,11 @@ h2{
 
 
 
-.category{
+.product-card .category{
 
-    color:#aaa;
+font-size:14px;
+
+color:#777;
 
 }
 
@@ -523,29 +462,11 @@ h2{
 
 .description{
 
-    font-size:14px;
+font-size:14px;
 
-    margin-top:10px;
-
-}
-
-
-
-
-
-.recommendation{
-
-    font-size:13px;
-
-    color:#ccc;
-
-    margin-top:10px;
+margin:10px 0;
 
 }
-
-
-
-
 
 
 
@@ -556,13 +477,35 @@ h2{
 ========================= */
 
 
+.cart-page{
+
+padding:60px 0;
+
+}
+
+
+
+
+
+.cart-page h1{
+
+text-align:center;
+
+margin-bottom:40px;
+
+}
+
+
+
+
+
 .cart-items{
 
-    display:flex;
+display:flex;
 
-    flex-direction:column;
+flex-direction:column;
 
-    gap:20px;
+gap:20px;
 
 }
 
@@ -572,16 +515,23 @@ h2{
 
 .cart-item{
 
+display:flex;
 
-    display:flex;
+gap:25px;
 
-    gap:20px;
+align-items:center;
 
-    background:#151515;
+background:white;
 
-    padding:20px;
+padding:20px;
 
-    border-radius:15px;
+border-radius:20px;
+
+box-shadow:
+
+0 5px 15px
+
+rgba(0,0,0,.08);
 
 }
 
@@ -591,42 +541,86 @@ h2{
 
 .cart-item img{
 
+width:120px;
 
-    width:120px;
+height:120px;
 
-    height:120px;
+object-fit:contain;
 
-    object-fit:cover;
-
-    border-radius:10px;
+border-radius:15px;
 
 }
 
 
 
 
+
+.cart-buttons{
+
+text-align:center;
+
+margin-top:30px;
+
+}
+
+
+
+
+
+#total{
+
+margin-top:30px;
+
+text-align:center;
+
+color:#b08a20;
+
+}
 
 
 
 
 
 /* =========================
-   FORM
+   CONTACTS
 ========================= */
+
+
+.contacts-page{
+
+padding:60px 0;
+
+}
+
+
+
 
 
 .form-box{
 
+background:white;
 
-    max-width:600px;
+padding:40px;
 
-    margin:auto;
+border-radius:25px;
 
-    background:#151515;
+box-shadow:
 
-    padding:35px;
+0 5px 20px
 
-    border-radius:20px;
+rgba(0,0,0,.1);
+
+}
+
+
+
+
+
+.form-box h2{
+
+color:#b08a20;
+
+margin-bottom:20px;
 
 }
 
@@ -634,17 +628,108 @@ h2{
 
 
 
-.form-box input{
+.form-box h3{
 
+margin-top:25px;
 
-    width:100%;
-
-    margin-bottom:15px;
-
+color:#111;
 
 }
 
 
+
+
+
+.form-box a{
+
+color:#b08a20;
+
+text-decoration:none;
+
+}
+
+
+
+
+
+.form-box i{
+
+color:#b08a20;
+
+margin-right:8px;
+
+}
+/* =========================
+   ADVANTAGES
+========================= */
+
+
+.advantages{
+
+padding:60px 0;
+
+background:#111;
+
+color:white;
+
+}
+
+
+
+
+.advantages h2{
+
+text-align:center;
+
+color:#d4af37;
+
+margin-bottom:40px;
+
+font-size:35px;
+
+}
+
+
+
+
+.advantages-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:25px;
+
+}
+
+
+
+
+
+.advantage{
+
+background:#1d1d1d;
+
+padding:30px;
+
+border-radius:20px;
+
+text-align:center;
+
+}
+
+
+
+
+
+.advantage h3{
+
+color:#d4af37;
+
+margin-bottom:15px;
+
+}
 
 
 
@@ -659,17 +744,19 @@ h2{
 
 .floating-buttons{
 
-    position:fixed;
+position:fixed;
 
-    right:25px;
+right:25px;
 
-    bottom:25px;
+bottom:25px;
 
-    display:flex;
+display:flex;
 
-    flex-direction:column;
+flex-direction:column;
 
-    gap:15px;
+gap:15px;
+
+z-index:999;
 
 }
 
@@ -678,23 +765,26 @@ h2{
 
 
 .whatsapp-float,
-
 .instagram-float{
 
 
-    width:55px;
+width:60px;
 
-    height:55px;
+height:60px;
 
-    border-radius:50%;
+border-radius:50%;
 
-    display:flex;
+display:flex;
 
-    align-items:center;
+align-items:center;
 
-    justify-content:center;
+justify-content:center;
 
-    font-size:25px;
+font-size:30px;
+
+color:white;
+
+text-decoration:none;
 
 }
 
@@ -704,7 +794,7 @@ h2{
 
 .whatsapp-float{
 
-    background:#25d366;
+background:#25D366;
 
 }
 
@@ -714,11 +804,9 @@ h2{
 
 .instagram-float{
 
-    background:#e1306c;
+background:#E1306C;
 
 }
-
-
 
 
 
@@ -733,21 +821,79 @@ h2{
 
 footer{
 
-    background:#050505;
+background:#111;
 
-    text-align:center;
+color:white;
 
-    padding:30px;
+text-align:center;
 
-    border-top:
+padding:30px 0;
 
-    1px solid
-
-    #333;
+margin-top:50px;
 
 }
 
 
+
+
+
+footer p{
+
+margin:5px;
+
+}
+
+
+
+
+
+
+
+/* =========================
+   WHOLESALE
+========================= */
+
+
+.wholesale-page{
+
+padding:60px 0;
+
+}
+
+
+
+
+
+.wholesale-form{
+
+background:white;
+
+padding:40px;
+
+border-radius:25px;
+
+}
+
+
+
+
+
+.wholesale-form input,
+.wholesale-form textarea,
+.wholesale-form select{
+
+
+width:100%;
+
+padding:15px;
+
+margin-bottom:15px;
+
+border-radius:10px;
+
+border:1px solid #ddd;
+
+}
 
 
 
@@ -766,31 +912,110 @@ footer{
 
 .nav-links{
 
-    flex-direction:column;
+flex-wrap:wrap;
 
-    gap:10px;
+justify-content:center;
 
-}
-
-
-
-.header nav{
-
-    flex-direction:column;
-
-    gap:20px;
+gap:15px;
 
 }
 
 
 
+nav{
+
+flex-direction:column;
+
+gap:20px;
+
+}
 
 
-#products{
 
-    grid-template-columns:
+.products-grid{
 
-    repeat(2,1fr);
+grid-template-columns:
+
+repeat(2,1fr);
+
+}
+
+
+
+.hero h1{
+
+font-size:35px;
+
+}
+
+
+
+}
+
+
+
+
+@media(max-width:600px){
+
+
+
+.container{
+
+width:94%;
+
+}
+
+
+
+.products-grid{
+
+grid-template-columns:
+
+1fr;
+
+}
+
+
+
+
+
+.product-card img{
+
+height:260px;
+
+}
+
+
+
+
+
+.cart-item{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+
+
+
+
+.cart-item img{
+
+width:180px;
+
+height:180px;
+
+}
+
+
+
+
+
+.form-box{
+
+padding:25px;
 
 }
 
@@ -800,7 +1025,34 @@ footer{
 
 .advantages-grid{
 
-    grid-template-columns:1fr;
+grid-template-columns:
+
+1fr;
+
+}
+
+
+
+
+
+.floating-buttons{
+
+right:15px;
+
+bottom:15px;
+
+}
+
+
+
+.whatsapp-float,
+.instagram-float{
+
+width:55px;
+
+height:55px;
+
+font-size:25px;
 
 }
 
@@ -812,44 +1064,27 @@ footer{
 
 
 
-@media(max-width:600px){
+
+/* =========================
+   IMAGE FIX
+========================= */
 
 
+img{
 
-.hero h1{
+max-width:100%;
 
-    font-size:34px;
-
-}
-
-
-
-
-
-#products{
-
-    grid-template-columns:1fr;
+display:block;
 
 }
 
 
 
 
+.product-card img{
 
-.catalog-tools{
+background:#fff;
 
-    flex-direction:column;
-
-}
-
-
-
-.cart-item{
-
-    flex-direction:column;
-
-}
-
-
+object-fit:contain;
 
 }
