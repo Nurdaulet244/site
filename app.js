@@ -4,13 +4,9 @@
 ========================= */
 
 
-/* =========================
-   SHOW PRODUCTS
-========================= */
-
+/* PRODUCTS */
 
 function displayProducts(list = products){
-
 
 const container =
 document.getElementById("products");
@@ -19,89 +15,56 @@ document.getElementById("products");
 if(!container) return;
 
 
-
-container.innerHTML = "";
-
+container.innerHTML="";
 
 
-list.forEach(product => {
-
+list.forEach(product=>{
 
 
 container.innerHTML += `
 
-
 <div class="product-card">
 
 
-
 <img
-
 src="${product.image}"
-
 alt="${product.name}"
-
 loading="lazy"
-
 onerror="this.src='images/no-image.png'"
-
 >
-
 
 
 <h3>
-
 ${product.name}
-
 </h3>
 
 
-
 <p class="brand">
-
 ${product.brand}
-
 </p>
-
 
 
 <p class="category">
-
 ${product.category}
-
 </p>
-
-
 
 
 <p class="description">
-
 ${product.description || ""}
-
 </p>
 
 
-
-
 <button
-
 class="btn gold"
-
 onclick="addToCart('${product.id}')"
-
 >
-
 🛒 В корзину
-
 </button>
-
 
 
 </div>
 
-
 `;
-
 
 
 });
@@ -113,13 +76,10 @@ onclick="addToCart('${product.id}')"
 
 
 
-/* =========================
-   FILTERS
-========================= */
+/* FILTERS */
 
 
 function createFilters(){
-
 
 
 const brand =
@@ -153,91 +113,54 @@ category.innerHTML =
 
 
 
-
-
-let brands = [
-
-...new Set(
-
-products.map(
-item=>item.brand
-)
-
-)
-
-];
-
-
-
-
-let categories = [
-
-...new Set(
-
-products.map(
-item=>item.category
-)
-
-)
-
-];
-
-
-
-
-
-brands.forEach(item=>{
-
+[...new Set(products.map(p=>p.brand))]
+.forEach(item=>{
 
 brand.innerHTML +=
-
 `
 <option value="${item}">
 ${item}
 </option>
 `;
-
 
 });
 
 
 
-
-
-categories.forEach(item=>{
-
+[...new Set(products.map(p=>p.category))]
+.forEach(item=>{
 
 category.innerHTML +=
-
 `
 <option value="${item}">
 ${item}
 </option>
 `;
-
 
 });
 
 
 }
-/* =========================
-   CATALOG SEARCH
-========================= */
+
+
+
+
+
+/* CATALOG */
 
 
 function initCatalog(){
 
 
-if(typeof products === "undefined")
+if(typeof products==="undefined")
 return;
 
 
 
-displayProducts();
+displayProducts(products);
+
 
 createFilters();
-
-
 
 
 
@@ -245,10 +168,8 @@ const search =
 document.getElementById("search");
 
 
-
 const brand =
 document.getElementById("brandFilter");
-
 
 
 const category =
@@ -257,31 +178,24 @@ document.getElementById("categoryFilter");
 
 
 
-
 function filterProducts(){
 
 
+let result=[...products];
 
-let result = products;
-
-
-
-if(search){
 
 
 let text =
-search.value
+search?.value
 .toLowerCase()
 .trim();
-
 
 
 
 if(text){
 
 
-result =
-result.filter(product =>
+result=result.filter(product=>
 
 
 product.name
@@ -289,49 +203,20 @@ product.name
 .includes(text)
 
 
-
 ||
-
-
 
 product.brand
 .toLowerCase()
 .includes(text)
 
 
-
 ||
-
-
 
 product.category
 .toLowerCase()
 .includes(text)
 
 
-
-);
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-if(brand && brand.value !== "all"){
-
-
-result =
-result.filter(product =>
-
-product.brand === brand.value
-
 );
 
 
@@ -340,15 +225,12 @@ product.brand === brand.value
 
 
 
+if(brand && brand.value!=="all"){
 
 
-if(category && category.value !== "all"){
+result=result.filter(product=>
 
-
-result =
-result.filter(product =>
-
-product.category === category.value
+product.brand===brand.value
 
 );
 
@@ -356,83 +238,70 @@ product.category === category.value
 }
 
 
+
+if(category && category.value!=="all"){
+
+
+result=result.filter(product=>
+
+product.category===category.value
+
+);
+
+
+}
 
 
 
 displayProducts(result);
 
 
-
 }
 
 
 
 
-
-
-if(search){
-
-search.addEventListener(
+search?.addEventListener(
 "input",
 filterProducts
 );
 
-}
 
 
-
-
-
-if(brand){
-
-brand.addEventListener(
+brand?.addEventListener(
 "change",
 filterProducts
 );
 
-}
 
 
-
-
-
-if(category){
-
-category.addEventListener(
+category?.addEventListener(
 "change",
 filterProducts
 );
 
+
+
 }
 
 
 
-}
 
 
 
 
-
-
-/* =========================
-   CART STORAGE
-========================= */
+/* CART */
 
 
 function getCart(){
 
 
 return JSON.parse(
-
 localStorage.getItem("cart")
+) || [];
 
-)
-
-|| [];
 
 }
-
-
 
 
 
@@ -440,11 +309,8 @@ function saveCart(cart){
 
 
 localStorage.setItem(
-
 "cart",
-
 JSON.stringify(cart)
-
 );
 
 
@@ -454,30 +320,17 @@ JSON.stringify(cart)
 
 
 
-
-/* =========================
-   ADD TO CART
-========================= */
-
-
 function addToCart(id){
 
 
-
-let cart =
-getCart();
-
+let cart=getCart();
 
 
 
 let product =
-products.find(item =>
-
-item.id === id
-
+products.find(
+p=>p.id===id
 );
-
-
 
 
 
@@ -486,29 +339,20 @@ return;
 
 
 
-
-
 let item =
-cart.find(item =>
-
-item.id === id
-
+cart.find(
+p=>p.id===id
 );
-
-
 
 
 
 if(item){
 
-
 item.quantity++;
-
 
 }
 
 else{
-
 
 cart.push({
 
@@ -518,10 +362,7 @@ quantity:1
 
 });
 
-
 }
-
-
 
 
 
@@ -531,16 +372,10 @@ saveCart(cart);
 updateCartCount();
 
 
-
-
 alert(
-
-product.name +
-
+product.name+
 " добавлен в корзину"
-
 );
-
 
 
 }
@@ -549,20 +384,11 @@ product.name +
 
 
 
-
-
-/* =========================
-   CART COUNT
-========================= */
-
-
 function updateCartCount(){
-
 
 
 const counter =
 document.getElementById("cartCount");
-
 
 
 if(!counter)
@@ -570,44 +396,33 @@ return;
 
 
 
-
-let cart =
-getCart();
-
-
-
-
 let count =
-
-cart.reduce(
-
-(sum,item)=>
-
-sum + item.quantity,
-
+getCart()
+.reduce(
+(sum,item)=>sum+item.quantity,
 0
-
 );
 
 
 
-
-
-counter.innerHTML =
-count;
-
+counter.innerHTML=count;
 
 
 }
-/* =========================
-   LOAD CART
-========================= */
+
+
+
+
+
+
+
+/* CART PAGE */
 
 
 function loadCart(){
 
 
-const container =
+const box =
 document.getElementById("cartItems");
 
 
@@ -616,28 +431,23 @@ document.getElementById("total");
 
 
 
-if(!container)
+if(!box)
 return;
 
 
 
-
-let cart =
-getCart();
+let cart=getCart();
 
 
 
-container.innerHTML = "";
+box.innerHTML="";
 
 
 
+if(cart.length===0){
 
 
-if(cart.length === 0){
-
-
-container.innerHTML =
-
+box.innerHTML=
 `
 <h3>
 Корзина пустая
@@ -645,58 +455,35 @@ container.innerHTML =
 `;
 
 
-
-if(total)
-
-total.innerHTML = "";
-
-
-
 return;
-
 
 }
 
 
 
-
-
-let sum = 0;
-
+let sum=0;
 
 
 
 cart.forEach((item,index)=>{
 
 
-
-container.innerHTML +=
-
-`
-
+box.innerHTML+=`
 
 <div class="cart-item">
 
 
 <img
-
 src="${item.image}"
-
-alt="${item.name}"
-
 onerror="this.src='images/no-image.png'"
-
 >
-
 
 
 <div>
 
-
 <h3>
 ${item.name}
 </h3>
-
 
 
 <p>
@@ -704,55 +491,39 @@ ${item.brand}
 </p>
 
 
-
 <p>
 Количество: ${item.quantity}
 </p>
 
 
-
 <button
-
 class="btn dark"
-
 onclick="removeCart(${index})"
-
 >
-
 Удалить
-
 </button>
 
 
 </div>
 
 
-
 </div>
-
 
 `;
 
 
 
-sum += item.quantity;
-
+sum+=item.quantity;
 
 
 });
 
 
 
-
-
 if(total){
 
-
-total.innerHTML =
-
-"Всего товаров: " + sum;
-
-
+total.innerHTML=
+"Всего товаров: "+sum;
 
 }
 
@@ -760,29 +531,18 @@ total.innerHTML =
 }
 
 
-
-
-
-
-/* =========================
-   REMOVE ITEM
-========================= */
 
 
 function removeCart(index){
 
 
-let cart =
-getCart();
-
+let cart=getCart();
 
 
 cart.splice(index,1);
 
 
-
 saveCart(cart);
-
 
 
 loadCart();
@@ -794,13 +554,6 @@ updateCartCount();
 }
 
 
-
-
-
-
-/* =========================
-   CLEAR CART
-========================= */
 
 
 function clearCart(){
@@ -809,7 +562,6 @@ function clearCart(){
 localStorage.removeItem("cart");
 
 
-
 loadCart();
 
 
@@ -822,136 +574,77 @@ updateCartCount();
 
 
 
-
-
-
-/* =========================
-   WHATSAPP ORDER
-========================= */
+/* WHATSAPP */
 
 
 function checkout(){
 
 
-
-let cart =
-getCart();
+let cart=getCart();
 
 
 
+if(cart.length===0){
 
-
-if(cart.length === 0){
-
-
-alert(
-"Корзина пустая"
-);
-
+alert("Корзина пустая");
 
 return;
-
 
 }
 
 
 
+let text=
+"Здравствуйте, FLEUR PERFUMES!\n\n";
 
 
-let message =
-
-"Здравствуйте, FLEUR PERFUMES!%0A%0A";
-
-
-message +=
-
-"Хочу заказать:%0A%0A";
-
-
-
+text+="Хочу заказать:\n\n";
 
 
 
 cart.forEach(item=>{
 
 
-message +=
-
-
-"- " +
-
-item.name +
-
-" (" +
-
-item.brand +
-
-") x " +
-
-item.quantity +
-
-"%0A";
-
+text+=
+"- "+
+item.name+
+" ("+
+item.brand+
+") x "+
+item.quantity+
+"\n";
 
 
 });
 
 
 
-
-
-let city = confirm(
-
-"Выберите город заказа:%0A%0A" +
-
-"OK — Алматы%0A" +
-
-"Отмена — Астана"
-
+let city =
+confirm(
+"OK — Алматы\nОтмена — Астана"
 );
 
 
 
-
-
-if(city){
+let phone =
+city
+?
+"77781655756"
+:
+"77714013715";
 
 
 
 window.open(
 
-"https://wa.me/77781655756?text="
-
-+
-
-message
-
-);
-
-
-
-}
-
-else{
-
-
-
-window.open(
-
-"https://wa.me/77714013715?text="
-
-+
-
-message
+"https://wa.me/"+
+phone+
+"?text="+
+encodeURIComponent(text)
 
 );
 
 
-
-}
-
-
-
 }
 
 
@@ -960,72 +653,52 @@ message
 
 
 
-
-/* =========================
-   WHOLESALE
-========================= */
+/* WHOLESALE */
 
 
 function sendWholesale(){
 
 
+let text=
 
-let message =
+"Здравствуйте, FLEUR PERFUMES!\n\n"+
 
+"Имя: "+
+(document.getElementById("name")?.value || "")+
 
-"Здравствуйте, FLEUR PERFUMES!%0A%0A" +
+"\nКомпания: "+
+(document.getElementById("company")?.value || "")+
 
+"\nТелефон: "+
+(document.getElementById("phone")?.value || "")+
 
-"Имя: " +
-
-(document.getElementById("name")?.value || "")
-
-+
-
-"%0AКомпания: " +
-
-(document.getElementById("company")?.value || "")
-
-+
-
-"%0AТелефон: " +
-
-(document.getElementById("phone")?.value || "")
-
-+
-
-"%0AГород: " +
-
+"\nГород: "+
 (document.getElementById("city")?.value || "");
 
 
 
-let city = confirm(
-
-"Выберите город:%0A%0AOK — Алматы%0AОтмена — Астана"
-
+let city =
+confirm(
+"OK — Алматы\nОтмена — Астана"
 );
 
 
 
-if(city){
+let phone =
+city
+?
+"77781655756"
+:
+"77714013715";
+
 
 
 window.open(
 
-"https://wa.me/77781655756?text="+message
-
-);
-
-
-}
-
-else{
-
-
-window.open(
-
-"https://wa.me/77714013715?text="+message
+"https://wa.me/"+
+phone+
+"?text="+
+encodeURIComponent(text)
 
 );
 
@@ -1034,27 +707,22 @@ window.open(
 
 
 
-}
 
 
 
-
-
-
-
-/* =========================
-   START
-========================= */
+/* START */
 
 
 document.addEventListener(
-
 "DOMContentLoaded",
-
 ()=>{
 
 
+if(typeof products!=="undefined"){
+
 initCatalog();
+
+}
 
 
 loadCart();
@@ -1063,7 +731,5 @@ loadCart();
 updateCartCount();
 
 
-
 }
-
 );
